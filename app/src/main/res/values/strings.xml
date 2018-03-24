@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TTSDKDemo</string>
+    <string name="state_ttservice_starting">TTService Starting</string>
+    <string name="state_ttservice_running">TTService Running</string>
+    <string name="state_ttservice_loss">TTService Loss</string>
+    <string name="btn_search_device">搜索设备</string>
+    <string name="state_no_tic_bond">no tic device bond</string>
+    <string name="btn_device_detail">设备详情</string>
+    <string name="btn_remove_device">移除设备</string>
+    <string name="state_tic_tag_state_loss">已与 TicTag 断开</string>
+    <string name="state_tic_tag_connecting">TicTag 蓝牙连接中…</string>
+    <string name="state_tic_tag_connected">TicTag 数据同步中</string>
+    <string name="state_tic_tag_disconnected">TicTag 蓝牙已断开</string>
+</resources>

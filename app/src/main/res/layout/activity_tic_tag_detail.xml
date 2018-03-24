@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_tictag_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_tictag_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_tictag_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_tictag_hw_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_tictag_fw_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_tictag_async_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_tictag_power"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_alert_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_location_long"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+    <TextView
+        android:id="@+id/tv_location_lat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="44dp"/>
+
+</LinearLayout>
