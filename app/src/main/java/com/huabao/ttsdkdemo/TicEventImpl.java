@@ -3,7 +3,6 @@ package com.huabao.ttsdkdemo;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.huabao.ttsdk.api.TicEvent;
@@ -20,8 +19,8 @@ public class TicEventImpl implements TicEvent {
     private static final String TAG = "ttsdk_demo";
 
     @Override
-    public void onBondTicResult(boolean success, @Nullable String message) {
-        Log.w(TAG, "TicTag bond result " + String.valueOf(success) + ", message " + message);
+    public void onBondTicResult(int code) {
+        Log.w(TAG, "TicTag bond result " + String.valueOf(code));
     }
 
     @Override
@@ -70,7 +69,7 @@ public class TicEventImpl implements TicEvent {
     }
 
     @Override
-    public void onServiceUnbind() {
+    public void onServiceUnbound() {
         Log.w(TAG, "TT Service Disconnected");
     }
 }

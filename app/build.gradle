@@ -27,5 +27,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // 导入 TTSDK Library
-    implementation 'com.niles.test:ttsdk:1.0.4'
+    implementation 'com.niles.test:ttsdk:2.1.0'
 }

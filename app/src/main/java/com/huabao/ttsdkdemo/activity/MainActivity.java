@@ -3,7 +3,6 @@ package com.huabao.ttsdkdemo.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -33,21 +32,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onServiceUnbind() {
+        public void onServiceUnbound() {
             // TTService 断开连接
-            super.onServiceUnbind();
+            super.onServiceUnbound();
             mTTServiceStateTextView.setText(R.string.state_ttservice_loss);
             mTicTagStateTextView.setText("--");
         }
 
         @Override
-        public void onBondTicResult(boolean success, @Nullable String message) {
+        public void onBondTicResult(int code) {
             // TicTag 绑定结果
-            super.onBondTicResult(success, message);
-            if (success) {
+            super.onBondTicResult(code);
+            if (code == -1) {
                 // TicTag 设备绑定成功
                 initBondTicState();
             } else {
+                final String message;
+                if (code == 2) {
+                    message = "TicTag尚未绑定，请长按侧边按钮五秒";
+                } else {
+                    message = "蓝牙连接失败";
+                }
                 mTicTagStateTextView.setText(String.format("bond tic failure %s", message));
             }
         }

@@ -2,6 +2,7 @@ package com.huabao.ttsdkdemo;
 
 import android.app.ActivityManager;
 import android.app.Application;
+import android.app.Notification;
 import android.content.Context;
 
 import com.blankj.utilcode.util.AppUtils;
@@ -27,7 +28,7 @@ public class MyApplication extends Application {
         // 判断是主进程，执行初始化方法
         if (AppUtils.getAppPackageName().equals(getCurrentProcessName())) {
             // 初始化 TTSDK
-            TicManager.init(this);
+            TicManager.init(this, new Notification());
         }
     }
 

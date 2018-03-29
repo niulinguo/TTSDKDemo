@@ -48,9 +48,9 @@ public class TicTagDetailActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onServiceUnbind() {
+        public void onServiceUnbound() {
             // TTService 服务断开连接
-            super.onServiceUnbind();
+            super.onServiceUnbound();
             Toast.makeText(TicTagDetailActivity.this, "TTService 已断开连接", Toast.LENGTH_SHORT).show();
             finish();
         }
