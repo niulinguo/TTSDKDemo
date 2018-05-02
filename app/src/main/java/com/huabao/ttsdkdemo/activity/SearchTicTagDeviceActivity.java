@@ -24,6 +24,8 @@ import com.huabao.ttsdkdemo.R;
 import com.huabao.ttsdkdemo.adapter.DeviceInfoAdapter;
 import com.inuker.bluetooth.library.utils.BluetoothUtils;
 
+import timber.log.Timber;
+
 /**
  * Created by Negro
  * Date 2018/3/23
@@ -49,6 +51,7 @@ public class SearchTicTagDeviceActivity extends AppCompatActivity {
                     mDeviceInfoAdapter.notifyDataSetChanged();
                 }
             }
+            Timber.tag("bleSearch").i(scanRecordModel.toString());
         }
     };
 
