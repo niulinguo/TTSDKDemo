@@ -11,6 +11,8 @@ import com.huabao.ttsdk.api.TicManager;
 
 import java.util.List;
 
+import timber.log.Timber;
+
 /**
  * Created by Negro
  * Date 2018/3/23
@@ -23,6 +25,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Timber.plant(new Timber.DebugTree());
         Utils.init(this);
 
         // 判断是主进程，执行初始化方法
