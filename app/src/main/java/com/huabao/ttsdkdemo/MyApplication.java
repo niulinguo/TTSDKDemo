@@ -8,6 +8,8 @@ import android.content.Context;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.Utils;
 import com.huabao.ttsdk.api.TicManager;
+import com.pgyersdk.crash.PgyCrashManager;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.List;
 
@@ -27,6 +29,12 @@ public class MyApplication extends Application {
 
         Timber.plant(new Timber.DebugTree());
         Utils.init(this);
+
+        PgyCrashManager.register(this);
+
+        final CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
+        strategy.setUploadProcess(true);
+        CrashReport.initCrashReport(getApplicationContext(), "b58f2dadf4", true, strategy);
 
         // 判断是主进程，执行初始化方法
         if (AppUtils.getAppPackageName().equals(getCurrentProcessName())) {

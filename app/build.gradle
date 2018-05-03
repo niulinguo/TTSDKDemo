@@ -6,8 +6,8 @@ android {
         applicationId "com.huabao.ttsdkdemo"
         minSdkVersion 18
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 101
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -30,4 +30,10 @@ dependencies {
 
     // 导入 TTSDK Library
     implementation 'com.niles.test:ttsdk:2.1.0'
+
+    // 蒲公英
+    implementation 'com.pgyersdk:sdk:2.8.1'
+
+    // Bugly
+    implementation 'com.tencent.bugly:crashreport:2.6.6'
 }

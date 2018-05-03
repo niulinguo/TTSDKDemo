@@ -23,6 +23,12 @@
         <activity
             android:name=".activity.TicTagDetailActivity"
             android:label="@string/btn_device_detail"/>
+
+        <!--蒲公英AppKey-->
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="740a839d3cee99b7434064cea4914bb8">
+        </meta-data>
     </application>
 
 </manifest>
