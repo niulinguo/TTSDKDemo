@@ -7,9 +7,10 @@ import android.content.Context;
 
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.Utils;
-import com.huabao.ttsdk.api.TicManager;
 import com.pgyersdk.crash.PgyCrashManager;
 import com.tencent.bugly.crashreport.CrashReport;
+
+import net.useiov.nepenthes_sdk.api.TicManager;
 
 import java.util.List;
 

@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.huabao.ttsdk.api.TicEvent;
-import com.huabao.ttsdk.model.ScanRecord;
+import net.useiov.nepenthes_sdk.api.TicEvent;
+import net.useiov.nepenthes_sdk.model.ScanRecord;
 
 /**
  * Created by Negro

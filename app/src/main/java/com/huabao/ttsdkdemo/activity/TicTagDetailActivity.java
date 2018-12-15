@@ -11,12 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.TimeUtils;
-import com.huabao.ttsdk.api.TicConnectionState;
-import com.huabao.ttsdk.api.TicManager;
-import com.huabao.ttsdk.model.ScanRecord;
-import com.huabao.ttsdk.model.TicDevice;
 import com.huabao.ttsdkdemo.R;
 import com.huabao.ttsdkdemo.TicEventImpl;
+
+import net.useiov.nepenthes_sdk.api.TicConnectionState;
+import net.useiov.nepenthes_sdk.api.TicManager;
+import net.useiov.nepenthes_sdk.model.ScanRecord;
+import net.useiov.nepenthes_sdk.model.TicDevice;
 
 /**
  * Created by Negro

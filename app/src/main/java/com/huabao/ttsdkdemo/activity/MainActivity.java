@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.huabao.ttsdk.api.TicManager;
-import com.huabao.ttsdk.model.TicDevice;
 import com.huabao.ttsdkdemo.R;
 import com.huabao.ttsdkdemo.TicEventImpl;
+
+import net.useiov.nepenthes_sdk.api.TicManager;
+import net.useiov.nepenthes_sdk.model.TicDevice;
 
 public class MainActivity extends AppCompatActivity {
 

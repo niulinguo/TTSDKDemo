@@ -18,11 +18,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.huabao.ttsdk.api.TicManager;
-import com.huabao.ttsdk.model.ScanRecord;
 import com.huabao.ttsdkdemo.R;
 import com.huabao.ttsdkdemo.adapter.DeviceInfoAdapter;
 import com.inuker.bluetooth.library.utils.BluetoothUtils;
+
+import net.useiov.nepenthes_sdk.api.TicManager;
+import net.useiov.nepenthes_sdk.model.ScanRecord;
 
 import timber.log.Timber;
 
