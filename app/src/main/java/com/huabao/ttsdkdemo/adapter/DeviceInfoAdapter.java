@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Negro
+ * Created by Niles
  * Date 2018/3/23
  * Email niulinguo@163.com
  */
@@ -35,7 +35,7 @@ public class DeviceInfoAdapter extends BaseAdapter {
 
     public boolean addWithCheck(@NonNull BluetoothDevice bluetoothDevice) {
         for (BluetoothDevice device : mBluetoothDevices) {
-            // 排除列表中重复的蓝牙设备
+            // exclude duplicate ble device
             if (device.equals(bluetoothDevice)) {
                 return false;
             }

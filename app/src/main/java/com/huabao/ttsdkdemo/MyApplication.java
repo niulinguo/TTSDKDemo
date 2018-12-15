@@ -17,7 +17,7 @@ import java.util.List;
 import timber.log.Timber;
 
 /**
- * Created by Negro
+ * Created by Niles
  * Date 2018/3/23
  * Email niulinguo@163.com
  */
@@ -37,15 +37,14 @@ public class MyApplication extends Application {
         strategy.setUploadProcess(true);
         CrashReport.initCrashReport(getApplicationContext(), "b58f2dadf4", true, strategy);
 
-        // 判断是主进程，执行初始化方法
         if (AppUtils.getAppPackageName().equals(getCurrentProcessName())) {
-            // 初始化 TTSDK
+            // init SDK on main process
             TicManager.init(this, new Notification());
         }
     }
 
     /**
-     * 获取当前进程名
+     * get current process name
      */
     private String getCurrentProcessName() {
         final int pid = android.os.Process.myPid();

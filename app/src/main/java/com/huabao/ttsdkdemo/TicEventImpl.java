@@ -9,7 +9,7 @@ import net.useiov.nepenthes_sdk.api.TicEvent;
 import net.useiov.nepenthes_sdk.model.ScanRecord;
 
 /**
- * Created by Negro
+ * Created by Niles
  * Date 2018/3/23
  * Email niulinguo@163.com
  */

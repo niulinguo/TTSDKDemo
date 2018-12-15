@@ -20,7 +20,7 @@ import net.useiov.nepenthes_sdk.model.ScanRecord;
 import net.useiov.nepenthes_sdk.model.TicDevice;
 
 /**
- * Created by Negro
+ * Created by Niles
  * Date 2018/3/23
  * Email niulinguo@163.com
  */
@@ -37,42 +37,36 @@ public class TicTagDetailActivity extends AppCompatActivity {
     private TextView mUserAlertTextView;
     private TextView mLocationLongTextView;
     private TextView mLocationLatTextView;
-    // 事件监听
     private final TicEventImpl mTicEvent = new TicEventImpl() {
 
         @Override
         public void onBondTicRemoved() {
-            // TicTag 设备被移除
             super.onBondTicRemoved();
-            Toast.makeText(TicTagDetailActivity.this, "TicTag 设备已移除", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TicTagDetailActivity.this, "Device Removed", Toast.LENGTH_SHORT).show();
             finish();
         }
 
         @Override
         public void onServiceUnbound() {
-            // TTService 服务断开连接
             super.onServiceUnbound();
-            Toast.makeText(TicTagDetailActivity.this, "TTService 已断开连接", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TicTagDetailActivity.this, "TTService Unconnected", Toast.LENGTH_SHORT).show();
             finish();
         }
 
         @Override
         public void onUserAlertEvent(int count, boolean isBeacon) {
-            // 监听到用户警报事件
             super.onUserAlertEvent(count, isBeacon);
             initUserAlert(count);
         }
 
         @Override
         public void onTicVersionChanged(@NonNull String hardwareVersion, @NonNull String firmwareVersion) {
-            // TicTag 设备升级
             super.onTicVersionChanged(hardwareVersion, firmwareVersion);
             initTicTagVersionInfo(hardwareVersion, firmwareVersion);
         }
 
         @Override
         public void onLocationState(boolean open) {
-            // 定位状态改变回调
             super.onLocationState(open);
             if (open) {
                 initTicTagState();
@@ -83,21 +77,18 @@ public class TicTagDetailActivity extends AppCompatActivity {
 
         @Override
         public void onScanBeacon(@NonNull ScanRecord scanRecord) {
-            // 监听到 Beacon 信息
             super.onScanBeacon(scanRecord);
             initTicTagPowerInfo(scanRecord.getPower());
         }
 
         @Override
         public void onTicConnectStateChanged(int oldState, int newState) {
-            // TicTag 连接蓝牙状态改变
             super.onTicConnectStateChanged(oldState, newState);
             initTicTagState();
         }
 
         @Override
         public void onLocationChanged(@NonNull Location location) {
-            // 监听到 Location 信息变化
             super.onLocationChanged(location);
             initLocationInfo(location);
         }
@@ -126,17 +117,15 @@ public class TicTagDetailActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        // 判断 TTService 是否已连接
         if (!TicManager.isServiceBond()) {
-            Toast.makeText(this, "TTService 未连接", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "TTService unconnected", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
-        // 判断 TicTag 设备是否已绑定
         final TicDevice ticDevice = TicManager.api().getBondTic();
         if (ticDevice == null) {
-            Toast.makeText(this, "未绑定 TicTag 设备", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Device unconnected", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -152,7 +141,7 @@ public class TicTagDetailActivity extends AppCompatActivity {
         mLocationLongTextView = findViewById(R.id.tv_location_long);
         mLocationLatTextView = findViewById(R.id.tv_location_lat);
 
-        // 添加事件监听
+        // callback listener
         TicManager.addTicListener(mTicEvent);
 
         initTicTagDeviceInfo(ticDevice);
@@ -160,69 +149,69 @@ public class TicTagDetailActivity extends AppCompatActivity {
     }
 
     /**
-     * 初始化 TicTag 设备信息
+     * init device info
      */
     private void initTicTagDeviceInfo(@NonNull TicDevice ticDevice) {
-        // TicTag 设备 名字
+        // device name
         final String ticDeviceName = ticDevice.getName();
-        // TicTag 设备 Mac 地址
+        // device MAC address
         final String ticDeviceAddress = ticDevice.getAddress();
-        // TicTag 设备 硬件版本
+        // device hardware version
         final String ticDeviceHwVersion = ticDevice.getHwVersion();
-        // TicTag 设备 固件版本
+        // device firmware version
         final String ticDeviceFwVersion = ticDevice.getFwVersion();
-        // TicTag 设备 最后一次连接蓝牙时间
+        // device last connect time
         final long ticDeviceLastConnected = ticDevice.getLastConnected();
 
-        mTicTagNameTextView.setText(String.format("已绑定设备名字：%s", ticDeviceName));
-        mTicTagAddressTextView.setText(String.format("已绑定设备地址：%s", ticDeviceAddress));
+        mTicTagNameTextView.setText(String.format("device name：%s", ticDeviceName));
+        mTicTagAddressTextView.setText(String.format("device mac：%s", ticDeviceAddress));
         initTicTagVersionInfo(ticDeviceHwVersion, ticDeviceFwVersion);
-        mTicTagAsyncTimeTextView.setText(String.format("最后蓝牙同步时间：%s", TimeUtils.millis2String(ticDeviceLastConnected)));
+        mTicTagAsyncTimeTextView.setText(String.format("sync time：%s", TimeUtils.millis2String(ticDeviceLastConnected)));
     }
 
     /**
-     * 初始化用户警报次数
+     * init alert
      */
     private void initUserAlert(int count) {
-        mUserAlertTextView.setText(String.format("用户警报次数：%s", count));
+        mUserAlertTextView.setText(String.format("alert：%s", count));
     }
 
     /**
-     * 初始化 TicTag 版本信息
+     * init version info
      */
     private void initTicTagVersionInfo(@NonNull String hwVersion, @NonNull String fwVersion) {
-        mTicTagHwVersionTextView.setText(String.format("已绑定设备硬件版本：%s", hwVersion));
-        mTicTagFwVersionTextView.setText(String.format("已绑定设备固件版本：%s", fwVersion));
+        mTicTagHwVersionTextView.setText(String.format("hardware version：%s", hwVersion));
+        mTicTagFwVersionTextView.setText(String.format("firmware version：%s", fwVersion));
     }
 
     /**
-     * 初始化 TicTAg 电量信息
+     * init power info
      */
     private void initTicTagPowerInfo(int power) {
-        mTicTagPowerTextView.setText(String.format("设备电量：%s%%", power));
+        mTicTagPowerTextView.setText(String.format("power：%s%%", power));
     }
 
     /**
-     * 初始化定位信息
+     * init location info
      */
     private void initLocationInfo(@NonNull Location location) {
-        mLocationLongTextView.setText(String.format("定位信息经度：%s", location.getLongitude()));
-        mLocationLatTextView.setText(String.format("定位信息纬度：%s", location.getLatitude()));
+        mLocationLongTextView.setText(String.format("longitude：%s", location.getLongitude()));
+        mLocationLatTextView.setText(String.format("latitude：%s", location.getLatitude()));
     }
 
     /**
-     * 初始化 TicTag 当前状态
+     * init current device status
      */
     private void initTicTagState() {
         if (!TicManager.isServiceBond()) {
-            Toast.makeText(this, "TTService 未连接", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "TTService unconnected", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
         final boolean locationState = TicManager.api().getLocationState();
         if (!locationState) {
-            // 长时间没有连接过蓝牙并没有监听到 Beacon 信息，就会停止定位
+            // location stop
             clearInfo();
             return;
         }
@@ -245,13 +234,13 @@ public class TicTagDetailActivity extends AppCompatActivity {
     }
 
     /**
-     * 清除所有信息
+     * reset show info
      */
     private void clearInfo() {
         mTicTagStateTextView.setText(R.string.state_tic_tag_state_loss);
-        mTicTagPowerTextView.setText(String.format("设备电量：%s", "--"));
-        mUserAlertTextView.setText(String.format("用户警报次数：%s", 0));
-        mLocationLongTextView.setText(String.format("定位信息经度：%s", "--"));
-        mLocationLatTextView.setText(String.format("定位信息纬度：%s", "--"));
+        mTicTagPowerTextView.setText(String.format("power：%s", "--"));
+        mUserAlertTextView.setText(String.format("alert：%s", 0));
+        mLocationLongTextView.setText(String.format("longitude：%s", "--"));
+        mLocationLatTextView.setText(String.format("latitude：%s", "--"));
     }
 }

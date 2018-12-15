@@ -28,13 +28,11 @@ import net.useiov.nepenthes_sdk.model.ScanRecord;
 import timber.log.Timber;
 
 /**
- * Created by Negro
+ * Created by Niles
  * Date 2018/3/23
  * Email niulinguo@163.com
  * <p>
- * 搜索蓝牙设备页面
- * 1、判断是否是 TicTag 设备方法
- * 2、请求绑定 TicTag 设备
+ * Search Device
  */
 
 public class SearchTicTagDeviceActivity extends AppCompatActivity {
@@ -45,7 +43,7 @@ public class SearchTicTagDeviceActivity extends AppCompatActivity {
     private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
         public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-            // 判断是否是 TicTag 设备
+            // Filter Available Device
             final ScanRecord scanRecordModel = new ScanRecord();
             if (scanRecordModel.parse(scanRecord) && scanRecordModel.isTicDevice()) {
                 if (mDeviceInfoAdapter.addWithCheck(device)) {
@@ -67,7 +65,7 @@ public class SearchTicTagDeviceActivity extends AppCompatActivity {
         }
 
         if (!BluetoothUtils.openBluetooth()) {
-            Toast.makeText(this, "请打开蓝牙", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Open Ble", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -100,7 +98,7 @@ public class SearchTicTagDeviceActivity extends AppCompatActivity {
         if (TicManager.isServiceBond()) {
             TicManager.api().requestBondTic(bluetoothDevice.getName(), bluetoothDevice.getAddress());
         } else {
-            Toast.makeText(this, "TTService 已断开", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "TTService Disconnected", Toast.LENGTH_SHORT).show();
         }
         finish();
     }
@@ -137,7 +135,7 @@ public class SearchTicTagDeviceActivity extends AppCompatActivity {
             if (success) {
                 scanBluetoothDevice();
             } else {
-                Toast.makeText(this, "无法获取权限", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "No Permission", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }

@@ -17,16 +17,12 @@ import net.useiov.nepenthes_sdk.model.TicDevice;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 展示 TTService 当前状态
     private TextView mTTServiceStateTextView;
-    // 展示 TicTag 当前状态
     private TextView mTicTagStateTextView;
-    // 事件监听
     private final TicEventImpl mTicEvent = new TicEventImpl() {
 
         @Override
         public void onServiceBond() {
-            // TTService 已绑定
             super.onServiceBond();
             mTTServiceStateTextView.setText(R.string.state_ttservice_running);
             initBondTicState();
@@ -34,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceUnbound() {
-            // TTService 断开连接
             super.onServiceUnbound();
             mTTServiceStateTextView.setText(R.string.state_ttservice_loss);
             mTicTagStateTextView.setText("--");
@@ -42,39 +37,37 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBondTicResult(int code) {
-            // TicTag 绑定结果
             super.onBondTicResult(code);
             if (code == -1) {
-                // TicTag 设备绑定成功
+                // Device Bind Success
                 initBondTicState();
             } else {
                 final String message;
                 if (code == 2) {
-                    message = "TicTag尚未绑定，请长按侧边按钮五秒";
+                    message = "please hold the side button for five seconds";
                 } else {
-                    message = "蓝牙连接失败";
+                    message = "Ble Connect Failure";
                 }
-                mTicTagStateTextView.setText(String.format("bond tic failure %s", message));
+                mTicTagStateTextView.setText(String.format("Bind Failure: %s", message));
             }
         }
 
         @Override
         public void onBondTicRemoved() {
-            // TicTag 被移除
             super.onBondTicRemoved();
             initBondTicState();
         }
     };
 
     /**
-     * 更新 TicTag 设备绑定状态
+     * Init Bind Device Info
      */
     private void initBondTicState() {
         final TicDevice ticDevice = TicManager.api().getBondTic();
         if (ticDevice == null) {
             mTicTagStateTextView.setText(R.string.state_no_tic_bond);
         } else {
-            mTicTagStateTextView.setText(String.format("bond device %s", ticDevice.getName()));
+            mTicTagStateTextView.setText(String.format("Device %s", ticDevice.getName()));
         }
     }
 
@@ -88,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         mTicTagStateTextView = findViewById(R.id.tv_tictag_state);
 
-        // 添加事件监听
+        // Callback Listener
         TicManager.addTicListener(mTicEvent);
     }
 
@@ -96,25 +89,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        // 注销事件监听
+        // Remove Callback Listener
         TicManager.removeTicListener(mTicEvent);
     }
 
     /**
-     * 搜索、绑定 TicTag 设备
+     * Search Device
      */
     public void onSearchDeviceButtonClicked(View view) {
         if (!hasBondTicDevice()) {
-            // 打开蓝牙搜索页面
+            // Open Search Device Page
             final Intent intent = new Intent(this, SearchTicTagDeviceActivity.class);
             startActivity(intent);
         } else {
-            Toast.makeText(this, "请先移除绑定的 TicTag 设备", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Unbind Device First", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * 查看 TicTag 设备信息
+     * Device Info
      */
     public void onDeviceDetailButtonClicked(View view) {
         if (hasBondTicDevice()) {
@@ -122,34 +115,34 @@ public class MainActivity extends AppCompatActivity {
             final Intent intent = new Intent(this, TicTagDetailActivity.class);
             startActivity(intent);
         } else {
-            Toast.makeText(this, "没有绑定 TicTag 设备", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Device Unbind", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * TicTag 设备解除绑定
+     * Device Unbind
      */
     public void onRemoveDeviceButtonClicked(View view) {
         if (hasBondTicDevice()) {
             new AlertDialog.Builder(this)
-                    .setMessage("是否移除绑定的 TicTag 设备？")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    .setMessage("Unbind Device?")
+                    .setPositiveButton("Y", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // 移除绑定的 TicTag 设备
+                            // Remove Bind Device
                             TicManager.api().removeBondTic();
-                            Toast.makeText(MainActivity.this, "移除成功", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
                         }
                     })
-                    .setNegativeButton("取消", null)
+                    .setNegativeButton("N", null)
                     .show();
         } else {
-            Toast.makeText(this, "没有绑定 TicTag 设备", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Device Unbind", Toast.LENGTH_SHORT).show();
         }
     }
 
     /**
-     * 判断是否绑定了 TicTag 设备
+     * Whether Has Bind Device
      */
     private boolean hasBondTicDevice() {
         if (TicManager.isServiceBond()) {

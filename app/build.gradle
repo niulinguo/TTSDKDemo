@@ -26,14 +26,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-
-    // 导入 TTSDK Library
+    // Import SDK Library
     implementation 'com.niles.test:Nepenthes:1.0.4'
 
-    // 蒲公英
     implementation 'com.pgyersdk:sdk:2.8.1'
-
-    // Bugly
     implementation 'com.tencent.bugly:crashreport:2.6.6'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }
